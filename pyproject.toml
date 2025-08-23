@@ -1,0 +1,41 @@
+[project]
+name = "euler"
+version = "0.1.0"
+description = "Python solutions for Project Euler problems"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pytest",
+    "setuptools>=80.9.0",
+]
+
+[tool.uv.workspace]
+members = [
+    ".",
+]
+
+[tool.uv.sources]
+euler = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.10",
+    "euler",
+]
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+euler = "euler.main:main"
+
+[tool.ruff]
+lint.select = ["F401"]
+fix = false
