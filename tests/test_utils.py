@@ -1,7 +1,7 @@
 """Tests for utility functions."""
 
 import pytest
-from euler.utils.helpers import is_prime, factorial
+from euler.utils.helpers import is_prime, factorial, fibonacci
 
 
 class TestIsPrime:
@@ -90,3 +90,54 @@ class TestFactorial:
         """Test that factorial raises error for negative numbers."""
         with pytest.raises(ValueError):
             factorial(-1)
+
+
+class TestFibonacci:
+    """Test cases for fibonacci function."""
+
+    def test_fibonacci_small_limits(self):
+        """Test fibonacci generator for small limits."""
+        assert list(fibonacci(0)) == []
+        assert list(fibonacci(1)) == [1]
+        assert list(fibonacci(2)) == [1, 2]
+        assert list(fibonacci(3)) == [1, 2, 3]
+        assert list(fibonacci(10)) == [1, 2, 3, 5, 8]
+
+    def test_fibonacci_exact_matches(self):
+        """Test when limit exactly matches fibonacci numbers."""
+        assert list(fibonacci(5)) == [1, 2, 3, 5]
+        assert list(fibonacci(8)) == [1, 2, 3, 5, 8]
+        assert list(fibonacci(13)) == [1, 2, 3, 5, 8, 13]
+
+    def test_fibonacci_larger_limits(self):
+        """Test fibonacci generator for larger limits."""
+        result = list(fibonacci(100))
+        expected = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+        assert result == expected
+
+    def test_fibonacci_very_large_limit(self):
+        """Test fibonacci generator stops at correct point."""
+        result = list(fibonacci(1000))
+        assert result[-1] == 987  # Last fibonacci number <= 1000
+        assert len(result) == 15
+
+    @pytest.mark.parametrize("limit,expected_last", [
+        (1, 1),
+        (2, 2), 
+        (5, 5),
+        (10, 8),
+        (20, 13),
+        (50, 34),
+        (100, 89),
+    ])
+    def test_fibonacci_parametrized(self, limit, expected_last):
+        """Parametrized test cases for fibonacci."""
+        result = list(fibonacci(limit))
+        if result:
+            assert result[-1] == expected_last
+
+    def test_fibonacci_generator_type(self):
+        """Test that fibonacci returns a generator."""
+        result = fibonacci(10)
+        assert hasattr(result, '__iter__')
+        assert hasattr(result, '__next__')
