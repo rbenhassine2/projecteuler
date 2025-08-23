@@ -15,14 +15,11 @@ def solve_01(number: int) -> int:
     
     limit = number // 2
 
-    print("limit", limit)
-
     current_number = number
 
     for prime in get_primes(limit):
         while current_number % prime == 0:
             current_number = current_number // prime 
-            print(current_number,prime)
             if current_number <= prime:
                 return prime
 
