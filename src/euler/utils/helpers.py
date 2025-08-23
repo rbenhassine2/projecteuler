@@ -18,6 +18,16 @@ def is_prime(n: int) -> bool:
             return False
     return True
 
+def get_primes(limit:int)->Iterator[int]:
+    assert limit >= 2
+    yield 2
+    n = 3
+    while n<=limit:
+        if is_prime(n):
+            yield n
+        n+=2
+
+
 
 def factorial(n: int) -> int:
     """Calculate factorial of n."""
