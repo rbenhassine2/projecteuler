@@ -27,6 +27,18 @@ def get_primes(limit:int)->Iterator[int]:
             yield n
         n+=2
 
+def get_primes_by_idx(idx:int)->int:
+    assert idx > 0
+
+    number = 2
+    while True:
+        if is_prime(number):
+            idx -= 1
+        if idx == 0:
+            return number
+        number+=1
+      
+
 
 
 def factorial(n: int) -> int:
