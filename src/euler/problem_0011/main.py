@@ -1,5 +1,5 @@
 
-from .solutions import solve_02 as solution
+from .solutions import solve_01 as solution
 
 def main():
     print(solution(4))
