@@ -1,7 +1,8 @@
 """Tests for utility functions."""
 
 import pytest
-from euler.utils.helpers import is_prime, factorial, fibonacci
+from euler.utils.helpers import factorial, fibonacci
+from euler.utils.primes import is_prime
 
 
 class TestIsPrime:

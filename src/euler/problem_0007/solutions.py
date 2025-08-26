@@ -6,7 +6,7 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 What is the 10 001st prime number?
 """
 
-from euler.utils.helpers import get_primes_by_idx
+from euler.utils.primes import get_primes_by_idx
 
 def solve_01(number) -> int:
     return get_primes_by_idx(number)
